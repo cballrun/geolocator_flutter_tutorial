@@ -24,9 +24,9 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.example.geolocator_flutter_tutorial"
-    compileSdkVersion flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
-
+    compileSdkVersion 33
+    Version flutter.compileSdkVersion
+    ndkVersion flutter.ndkVersion 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
