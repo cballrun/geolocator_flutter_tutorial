@@ -161,6 +161,42 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 
+_getLocationUpdates() async {
+  // Check if location services are enabled.
+  bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  if (!serviceEnabled) {
+    _showSnackBar('Location services are disabled.', Colors.red);
+    return;
+  }
+  LocationPermission permission = await Geolocator.checkPermission();
+  if (permission == LocationPermission.denied) {
+    permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.denied) {
+      _showSnackBar('Location permissions are denied', Colors.red);
+      return;
+    }
+  }
+
+  if (permission == LocationPermission.deniedForever) {
+    // Permissions are denied forever, handle appropriately.
+    _showSnackBar(
+        'Location permissions are permanently denied, we cannot request permissions.',
+        Colors.red);
+    return;
+  }
+
+  const LocationSettings locationSettings = LocationSettings(
+    accuracy: LocationAccuracy.high,
+    distanceFilter: 100,
+  );
+  StreamSubscription<Position> positionStream =
+      Geolocator.getPositionStream(locationSettings: locationSettings)
+          .listen((Position position) {
+    log(position.toString());
+    _showMaterialBanner(position.toString(), Colors.green);
+  });
+}
+
 
 
 
