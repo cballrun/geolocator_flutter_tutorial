@@ -45,5 +45,10 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+
+	<key>UserLocationTestAppLocationAccess</key>
+	<string>This app needs access to location when open.</string>
+	<key>UserLocationTestAppLocationAccessBackground</key>
+	<string>This app needs access to location when in the background.</string>
 </dict>
 </plist>
